@@ -1,14 +1,14 @@
-# CamelMailer MCP Server
+# Camelmailer MCP Server
 
 [![CI](https://github.com/camelmailer/camelmailer-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/camelmailer/camelmailer-mcp/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/camelmailer-mcp.svg)](https://www.npmjs.com/package/camelmailer-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-[Model Context Protocol](https://modelcontextprotocol.io) server for [CamelMailer](https://camelmailer.com) — lets AI assistants like Claude send and inspect transactional email. Works with the CamelMailer cloud and any self-hosted instance.
+[Model Context Protocol](https://modelcontextprotocol.io) server for [Camelmailer](https://camelmailer.com) — lets AI assistants like Claude send and inspect transactional email. Works with the Camelmailer cloud and any self-hosted instance.
 
 ## Setup
 
-You need a server API key from your CamelMailer dashboard.
+You need a server API key from your Camelmailer dashboard.
 
 ### Claude Desktop
 
@@ -72,7 +72,7 @@ Example prompts:
 
 ## Errors
 
-API failures come back as tool errors carrying the stable CamelMailer error code (`Unauthorized`, `NotFound`, `ValidationError`, …), so the assistant can react — nothing crashes the server.
+API failures come back as tool errors carrying the stable Camelmailer error code (`Unauthorized`, `NotFound`, `ValidationError`, …), so the assistant can react — nothing crashes the server.
 
 ## Docs
 

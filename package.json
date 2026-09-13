@@ -1,7 +1,7 @@
 {
   "name": "camelmailer-mcp",
   "version": "0.1.0",
-  "description": "MCP server for CamelMailer — let AI assistants send and inspect transactional email",
+  "description": "MCP server for Camelmailer — let AI assistants send and inspect transactional email",
   "keywords": [
     "camelmailer",
     "mcp",
@@ -19,7 +19,7 @@
     "url": "git+https://github.com/camelmailer/camelmailer-mcp.git"
   },
   "license": "MIT",
-  "author": "CamelMailer contributors",
+  "author": "Camelmailer contributors",
   "type": "module",
   "bin": {
     "camelmailer-mcp": "./dist/index.js"

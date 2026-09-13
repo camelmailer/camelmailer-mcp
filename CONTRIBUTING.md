@@ -34,7 +34,7 @@ CAMELMAILER_API_KEY=cm_xxx CAMELMAILER_BASE_URL=https://mail.example.com npm tes
 - Tools live in `src/tools.ts` as data (name, description, zod shape,
   handler) — the server in `src/server.ts` just registers them.
 - Tool results carry the raw API payload as pretty-printed JSON; failures
-  return `isError: true` with the stable CamelMailer error code.
+  return `isError: true` with the stable Camelmailer error code.
 - stdout belongs to the MCP protocol — log to stderr only.
 - Bump `src/version.ts` together with `package.json`, and keep
   `CHANGELOG.md` (Keep a Changelog) up to date.
