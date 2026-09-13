@@ -18,17 +18,17 @@ jobs:
           node-version: 22
           cache: npm
           registry-url: https://registry.npmjs.org
+      # OIDC publishing needs npm 11.5.1 or newer, and setup-node with
+      # Node 22 still ships npm 10.x.
+      - run: npm install -g npm@latest
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
+      # No token: npm mints a short-lived credential from the OIDC identity
+      # of this workflow, which the package trusts by repository and file
+      # name. `access` lives in package.json so a local publish behaves the
+      # same way.
       - name: Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [ -z "$NODE_AUTH_TOKEN" ]; then
-            echo "NPM_TOKEN secret is not configured — skipping publish."
-            exit 0
-          fi
-          npm publish --provenance --access public
+        run: npm publish --provenance
