@@ -11,7 +11,7 @@ import { VERSION } from './version.js';
  * `CAMELMAILER_API_KEY` / `CAMELMAILER_BASE_URL`.
  */
 export function createServer(client: McpClient = createClientFromEnv()): McpServer {
-  const server = new McpServer({ name: 'camelmailer', version: VERSION });
+  const server = new McpServer({ name: '@camelmailer/sdk', version: VERSION });
 
   for (const tool of tools) {
     server.registerTool(

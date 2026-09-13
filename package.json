@@ -1,5 +1,5 @@
 {
-  "name": "camelmailer-mcp",
+  "name": "@camelmailer/mcp",
   "version": "0.1.0",
   "description": "MCP server for Camelmailer — let AI assistants send and inspect transactional email",
   "keywords": [
@@ -38,8 +38,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@camelmailer/sdk": "^0.1.0",
     "@modelcontextprotocol/sdk": "^1.29.0",
-    "camelmailer": "github:camelmailer/camelmailer-node",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -52,5 +52,8 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
 
-import type { SendEmailResponse } from 'camelmailer';
+import type { SendEmailResponse } from '@camelmailer/sdk';
 
 import { apiError, callTool, email, getTool, ok, pagination, payload } from './helpers.js';
 import { tools } from '../src/tools.js';

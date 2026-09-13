@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import type { CamelMailerResult, Email, Pagination } from 'camelmailer';
+import type { CamelMailerResult, Email, Pagination } from '@camelmailer/sdk';
 
 import type { McpClient } from '../src/client.js';
 import type { CamelMailerTool, ToolResult } from '../src/tools.js';
