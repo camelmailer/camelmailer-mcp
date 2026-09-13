@@ -1,7 +1,7 @@
 # Camelmailer MCP Server
 
 [![CI](https://github.com/camelmailer/camelmailer-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/camelmailer/camelmailer-mcp/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/camelmailer-mcp.svg)](https://www.npmjs.com/package/camelmailer-mcp)
+[![npm](https://img.shields.io/npm/v/%40camelmailer%2Fmcp.svg)](https://www.npmjs.com/package/@camelmailer/mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 [Model Context Protocol](https://modelcontextprotocol.io) server for [Camelmailer](https://camelmailer.com) — lets AI assistants like Claude send and inspect transactional email. Works with the Camelmailer cloud and any self-hosted instance.
@@ -19,7 +19,7 @@ Add to `claude_desktop_config.json` (Settings → Developer → Edit Config):
   "mcpServers": {
     "camelmailer": {
       "command": "npx",
-      "args": ["-y", "camelmailer-mcp"],
+      "args": ["-y", "@camelmailer/mcp"],
       "env": {
         "CAMELMAILER_API_KEY": "cm_xxxx"
       }
@@ -28,13 +28,10 @@ Add to `claude_desktop_config.json` (Settings → Developer → Edit Config):
 }
 ```
 
-> Until the packages land on npm, use the GitHub source instead:
-> `"args": ["-y", "github:camelmailer/camelmailer-mcp"]`
-
 ### Claude Code
 
 ```bash
-claude mcp add camelmailer -e CAMELMAILER_API_KEY=cm_xxxx -- npx -y camelmailer-mcp
+claude mcp add camelmailer -e CAMELMAILER_API_KEY=cm_xxxx -- npx -y @camelmailer/mcp
 ```
 
 ### Self-hosted instances

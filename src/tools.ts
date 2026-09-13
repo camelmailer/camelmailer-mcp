@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { ZodRawShape, objectOutputType, ZodTypeAny } from 'zod';
 
-import type { CamelMailerResult } from 'camelmailer';
+import type { CamelMailerResult } from '@camelmailer/sdk';
 
 import type { McpClient } from './client.js';
 
