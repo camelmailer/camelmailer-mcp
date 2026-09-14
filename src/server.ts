@@ -16,7 +16,11 @@ export function createServer(client: McpClient = createClientFromEnv()): McpServ
   for (const tool of tools) {
     server.registerTool(
       tool.name,
-      { description: tool.description, inputSchema: tool.inputSchema },
+      {
+        description: tool.description,
+        inputSchema: tool.inputSchema,
+        annotations: tool.annotations,
+      },
       async (args) => {
         try {
           return await tool.handler(client, args);

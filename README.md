@@ -58,6 +58,33 @@ Point the server at your own instance (defaults to `https://app.camelmailer.com`
 | `get_stats` | Message counters (sent, bounced, opens, clicks, …) |
 | `list_bounces` | Bounced messages |
 | `dmarc_summary` | DMARC pass rate and top sending sources |
+| `list_streams` `get_stream` `create_stream` `update_stream` `archive_stream` | Message streams |
+| `send_to_stream` | **Sends now** to every subscriber of a broadcast stream |
+| `list_campaigns` `get_campaign` | Campaigns and their statistics |
+| `create_campaign_draft` | Write a campaign **without** sending it |
+| `send_campaign_now` | **Sends now**: creates a campaign and mails the stream |
+| `update_campaign` `send_campaign` `cancel_campaign` | Edit, send or call off a campaign |
+| `list_subscribers` `add_subscriber` `import_subscribers` | The audience of a broadcast stream |
+| `record_complaint` `remove_subscriber` | Suppress or remove an address |
+| `list_layouts` `get_layout` `create_layout` `update_layout` `delete_layout` | Template layouts |
+| `list_inbound` `get_inbound` `retry_inbound` `bypass_inbound` | Inbound and held messages |
+| `list_api_requests` `list_tags` | The server's request log and tag index |
+
+### Which campaign tool sends
+
+There are two ways to create a campaign and they behave differently:
+
+- **`create_campaign_draft`** writes it and waits. Without `scheduled_at` it
+  stays a draft; with one the server sends it when due.
+- **`send_campaign_now`** creates it and mails every subscriber of the stream
+  before the call returns. There is no draft to review.
+
+They are separate tools because they are separate API routes, and calling one
+when you meant the other is the difference between a draft and a broadcast.
+
+Tools that mail people or remove data carry the MCP `destructiveHint`
+annotation; the read-only ones carry `readOnlyHint`. A client can use those to
+ask before running one.
 
 Example prompts:
 
@@ -65,7 +92,9 @@ Example prompts:
 
 > Why did yesterday's emails to @gmail.com addresses bounce?
 
-> What's our DMARC pass rate for acme.com this month?
+> Draft a September newsletter for the product-news stream, but do not send it yet.
+
+> How many people are subscribed to product-news, and how did last month's campaign do?
 
 ## Errors
 

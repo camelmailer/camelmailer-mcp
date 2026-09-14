@@ -14,21 +14,84 @@ const sendResponse: SendEmailResponse = {
 describe('tool registry', () => {
   it('exposes exactly the documented tools', () => {
     expect(tools.map((tool) => tool.name).sort()).toEqual([
+      'add_subscriber',
+      'archive_stream',
+      'bypass_inbound',
+      'cancel_campaign',
+      'create_campaign_draft',
+      'create_layout',
+      'create_stream',
+      'delete_layout',
       'dmarc_summary',
+      'get_campaign',
       'get_email',
+      'get_inbound',
+      'get_layout',
       'get_stats',
+      'get_stream',
+      'import_subscribers',
+      'list_api_requests',
       'list_bounces',
+      'list_campaigns',
       'list_emails',
+      'list_inbound',
+      'list_layouts',
+      'list_streams',
+      'list_subscribers',
+      'list_tags',
       'list_templates',
+      'record_complaint',
+      'remove_subscriber',
       'render_template',
+      'retry_inbound',
+      'send_campaign',
+      'send_campaign_now',
       'send_email',
       'send_email_with_template',
+      'send_to_stream',
+      'update_campaign',
+      'update_layout',
+      'update_stream',
     ]);
   });
 
   it('gives every tool a description', () => {
     for (const tool of tools) {
       expect(tool.description.length, tool.name).toBeGreaterThan(20);
+    }
+  });
+
+  it('gives every tool a unique name', () => {
+    const names = tools.map((tool) => tool.name);
+    expect(new Set(names).size).toBe(names.length);
+  });
+
+  it('marks every tool that mails people or removes data as destructive', () => {
+    // A client shows these differently, so a mislabelled one is the kind of
+    // mistake that reaches real recipients.
+    const sending = [
+      'send_email',
+      'send_email_with_template',
+      'send_to_stream',
+      'send_campaign',
+      'send_campaign_now',
+      'cancel_campaign',
+      'archive_stream',
+      'delete_layout',
+      'remove_subscriber',
+      'record_complaint',
+      'retry_inbound',
+      'bypass_inbound',
+    ];
+    for (const name of sending) {
+      expect(getTool(name).annotations?.destructiveHint, name).toBe(true);
+    }
+  });
+
+  it('marks the readers read-only', () => {
+    const readers = tools.filter((tool) => tool.name.startsWith('list_') || tool.name.startsWith('get_'));
+    for (const tool of readers) {
+      expect(tool.annotations?.readOnlyHint, tool.name).toBe(true);
     }
   });
 });
@@ -55,6 +118,7 @@ describe('send_email', () => {
         text_body: 'Hello!',
         tag: 'welcome',
       }),
+      undefined,
     );
     expect(result.isError).toBeUndefined();
     expect(payload(result)).toEqual(sendResponse);
@@ -103,6 +167,7 @@ describe('send_email_with_template', () => {
 
     expect(sendWithTemplate).toHaveBeenCalledWith(
       expect.objectContaining({ template: 'welcome', template_model: { name: 'Ada' } }),
+      undefined,
     );
     expect(payload(result)).toEqual(sendResponse);
   });
